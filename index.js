@@ -20,7 +20,7 @@ const app = express();
 const port = !Number.isNaN(argv.port) && argv.port || 8080;
 const root = path.resolve(process.cwd(), process.argv[2] || ".");
 
-app.use(morgan(":remote-addr (:user-agent)\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
+app.use(morgan(":remote-addr :user-agent\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
 argv.index && app.use(serveIndex(root));
 app.use(express.static(root));
 
