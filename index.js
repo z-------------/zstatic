@@ -27,4 +27,6 @@ argv.index && app.use(serveIndex(root, {
 }));
 app.use(express.static(root));
 
-app.listen(port, () => console.log(`Listening on :${port}`));
+app.listen(port, () => {
+  console.log(`Serving ${root} on :${port}`);
+});
