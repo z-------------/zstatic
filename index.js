@@ -22,7 +22,8 @@ const root = path.resolve(process.cwd(), process.argv[2] || ".");
 
 app.use(morgan(":remote-addr :user-agent\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
 argv.index && app.use(serveIndex(root, {
-  view: "details"
+  view: "details",
+  icons: true
 }));
 app.use(express.static(root));
 
