@@ -14,8 +14,6 @@ app.use(morgan(":remote-addr (:user-agent)\n\t:method :url HTTP/:http-version :s
 
 app.use(serveIndex(root));
 
-app.use(express.static(root, {
-  fallthrough: false
-}));
+app.use(express.static(root));
 
 app.listen(PORT, () => console.log(`Listening on :${PORT}`));
