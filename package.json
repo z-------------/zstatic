@@ -1,0 +1,17 @@
+{
+  "name": "zstatic",
+  "version": "0.0.0",
+  "description": "Simple static HTTP server",
+  "main": "index.js",
+  "author": "Zack Guard <zacharyguard@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "serve-index": "^1.9.1"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "zstatic": "index.js"
+  }
+}
