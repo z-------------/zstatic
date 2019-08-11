@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "Zack Guard <zacharyguard@gmail.com>",
   "license": "MIT",
+  "repository": "github:z-------------/zstatic",
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.9.1",
