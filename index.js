@@ -26,7 +26,7 @@ const root = path.resolve(process.cwd(), process.argv[2] || ".");
 app.use(morgan(":remote-addr :user-agent\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
 argv.index && app.use(serveIndex(root, {
   template: require("./template/render")(argv),
-  stylesheet: "template/style.css"
+  stylesheet: path.join(__dirname, "template/style.css")
 }));
 app.use(express.static(root));
 
