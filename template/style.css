@@ -1,0 +1,23 @@
+body {
+  font-family: "FreeSans", "Arimo", "Liberation Sans", "Helvetica Neue", "Helvetica", "Roboto", "Oxygen", "Noto Sans", "Open Sans", sans-serif;
+}
+
+table {
+  line-height: 1.3;
+}
+
+th, td {
+  padding-right: 0.5em;
+}
+
+th {
+  text-align: left;
+}
+
+.listing_size {
+  text-align: right;
+}
+
+#path {
+  font-size: 1.5em;
+}
