@@ -13,6 +13,9 @@ const { argv } = require("yargs")
   .boolean("index")
     .describe("index", "Serve directory index pages")
     .default("index", true)
+  .boolean("footer")
+    .describe("footer", "Show footer on directory index pages")
+    .default("footer", true)
   ;
 
 const app = express();
@@ -22,7 +25,7 @@ const root = path.resolve(process.cwd(), process.argv[2] || ".");
 
 app.use(morgan(":remote-addr :user-agent\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
 argv.index && app.use(serveIndex(root, {
-  template: require("./template/render"),
+  template: require("./template/render")(argv),
   stylesheet: "template/style.css"
 }));
 app.use(express.static(root));

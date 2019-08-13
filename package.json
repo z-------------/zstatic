@@ -8,6 +8,7 @@
   "repository": "github:z-------------/zstatic",
   "dependencies": {
     "express": "^4.17.1",
+    "filesize": "^4.1.2",
     "morgan": "^1.9.1",
     "pug": "^2.0.4",
     "serve-index": "^1.9.1",
