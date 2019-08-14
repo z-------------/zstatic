@@ -15,7 +15,7 @@ html
         - const isDir = file.stat.isDirectory()
         tr
           td.listing_name
-            a(href= file.name + (isDir ? "/" : ""))= file.name + (isDir ? "/" : "")
+            a(href= encodeURIComponent(file.name) + (isDir ? "/" : ""))= file.name + (isDir ? "/" : "")
           td.listing_size= isDir ? "-" : file.sizeString
           td.listing_mtime= file.stat.mtime.toISOString().replace(/T|Z/g, " ").replace(/\.\d{3}/, "")
     if argv.footer
