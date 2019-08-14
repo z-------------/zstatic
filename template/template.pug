@@ -14,8 +14,8 @@ html
       each file in fileList
         tr
           td.listing_name
-            a(href=`${directory === "/" ? "" : directory}/${file.name}`)= file.name
-          td.listing_size= file.sizeString
+            a(href=`${directory === "/" ? "" : directory}/${file.name}`)= file.name + (file.stat.isDirectory() ? "/" : "")
+          td.listing_size= file.stat.isDirectory() ? "-" : file.sizeString
           td.listing_mtime= file.stat.mtime.toISOString().replace(/T|Z/g, " ").replace(/\.\d{3}/, "")
     if argv.footer
       footer
