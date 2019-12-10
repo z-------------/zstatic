@@ -1,6 +1,6 @@
 {
   "name": "zstatic",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simple static HTTP server",
   "main": "index.js",
   "author": "Zack Guard <zacharyguard@gmail.com>",
@@ -10,7 +10,6 @@
     "express": "^4.17.1",
     "filesize": "^4.1.2",
     "morgan": "^1.9.1",
-    "pug": "^2.0.4",
     "serve-index": "^1.9.1",
     "yargs": "^13.3.0"
   },
