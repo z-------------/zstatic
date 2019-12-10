@@ -5,6 +5,7 @@ const fs = require("fs");
 const express = require("express");
 const serveIndex = require("serve-index");
 const morgan = require("morgan");
+const seppuku = require("./lib/seppuku");
 
 const { argv } = require("yargs")
   .usage("Usage: $0 <root> [<options>]")
@@ -31,6 +32,14 @@ const app = express();
 
 const port = !Number.isNaN(argv.port) && argv.port || 8080;
 const root = path.resolve(process.cwd(), process.argv[2] || ".");
+
+try {
+  const stat = fs.statSync(root);
+  if (!stat.isDirectory()) seppuku(`'${root}' is not a directory`);
+} catch (exp) {
+  if (exp.code === "ENOENT") seppuku(`Could not access '${root}'`);
+  else seppuku();
+}
 
 app.use(morgan(":remote-addr :user-agent\n\t:method :url HTTP/:http-version :status :res[content-length] - :response-time ms"));
 if (argv.index) {
