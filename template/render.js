@@ -1,10 +1,15 @@
 const path = require("path");
+const fs = require("fs");
 const filesize = require("filesize");
 const esc = require("../lib/escape");
 
 const { version } = require("../package.json");
 
+const STYLESHEET = fs.readFileSync(path.join(__dirname, "style.css"), "utf-8");
+
 const template = vars => {
+  const parentPathEscaped = vars.directory.split("/").map(frag => encodeURIComponent(frag)).join("/");
+
   const rowHTMLs = [];
   for (const file of vars.fileList) {
     const isDir = file.stat.isDirectory();
@@ -12,11 +17,11 @@ const template = vars => {
     rowHTMLs.push(`
 <tr>
   <td class="listing_name">
-    <a href="${encodeURIComponent(file.name)}${trailingSlash}">
+    <a href="${path.posix.join(parentPathEscaped, encodeURIComponent(file.name))}">
       ${esc(file.name)}${trailingSlash}
     </a>
   </td>
-  <td class="listing_size">${isDir ? "-" : esc(file.sizeString)}</td>
+  <td class="listing_size">${isDir ? "-" : esc(filesize(file.stat.size))}</td>
   <td class="listing_mtime">
     ${esc(file.stat.mtime.toISOString().replace(/T|Z/g, " ").replace(/\.\d{3}/, ""))}
   </td>
@@ -35,7 +40,7 @@ const template = vars => {
   <head>
     <meta charset="utf-8"/>
     <title>Index of ${esc(vars.directory)}</title>
-    <style>${vars.style}</style>
+    <style>${STYLESHEET}</style>
   </head>
   <body>
     <h1 id="path">${esc(vars.directory)}</h1>
@@ -54,15 +59,12 @@ const template = vars => {
 };
 
 const render = argv => {
-  return function(locals, callback) {
+  return locals => {
     const vars = Object.assign({
       argv,
       zstatic: { version }
     }, locals);
-    for (const file of vars.fileList) {
-      file.sizeString = filesize(file.stat.size);
-    }
-    return callback(null, template(vars));
+    return template(vars);
   };
 };
 
