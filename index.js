@@ -7,17 +7,25 @@ const serveIndex = require("serve-index");
 const morgan = require("morgan");
 
 const { argv } = require("yargs")
-  .number("port")
-    .alias("port", "p")
-    .describe("port", "Specify port to listen on")
-    .default("port", 8080)
-  .boolean("index")
-    .describe("index", "Serve directory index pages")
-    .default("index", true)
-  .boolean("footer")
-    .describe("footer", "Show footer on directory index pages")
-    .default("footer", true)
-  ;
+  .usage("Usage: $0 <root> [<options>]")
+  .options({
+    "port": {
+      alias: "p",
+      describe: "Specify port to listen on",
+      type: "number",
+      default: 8080,
+    },
+    "index": {
+      describe: "Serve directory index pages",
+      type: "boolean",
+      default: true,
+    },
+    "footer": {
+      describe: "Show footer on directory index pages",
+      type: "boolean",
+      default: true,
+    },
+  });
 
 const app = express();
 
