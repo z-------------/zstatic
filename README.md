@@ -11,7 +11,9 @@ npm i -g zstatic
 ## Usage
 
 ```
-Options
+Usage: index <root> [<options>]
+
+Options:
   --help      Show help                                                [boolean]
   --version   Show version number                                      [boolean]
   --port, -p  Specify port to listen on                 [number] [default: 8080]
