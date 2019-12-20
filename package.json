@@ -1,6 +1,6 @@
 {
   "name": "zstatic",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Simple static HTTP server",
   "main": "index.js",
   "author": "Zack Guard <zacharyguard@gmail.com>",

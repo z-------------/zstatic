@@ -12,7 +12,7 @@ const send = require("koa-send");
 const seppuku = require("./lib/seppuku");
 const yargs = require("yargs");
 
-const resolve = pathname => path.join(__dirname, pathname.slice(1));
+const resolve = pathname => path.join(root, pathname.slice(1));
 
 const { argv } = yargs
   .usage("Usage: $0 <root> [<options>]")
@@ -109,7 +109,7 @@ app.use(async (ctx, next) => {
         directory: dirName,
       });
     } else {
-      await send(ctx, ctx.path);
+      await send(ctx, ctx.path, { root });
     }
   } catch (exp) {
     if (exp.code !== "ENOENT") throw exp;
